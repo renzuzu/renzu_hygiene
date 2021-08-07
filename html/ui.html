@@ -1,0 +1,27 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            function playsound(table) {
+                var file = table['file']
+                var volume = table['volume']
+                var audioPlayer = null;
+                if (audioPlayer != null) {
+                    audioPlayer.pause();
+                }
+                if (volume == undefined) {
+                    volume = 0.8
+                }
+                audioPlayer = new Audio("./audio/" + file + ".ogg");
+                audioPlayer.volume = volume;
+                audioPlayer.play();
+            }
+            window.addEventListener("message", function(event){
+                if (event.data.type == 'playsound') {
+                    playsound(event.data.content)
+                }
+            });
+        </script>
+    </body>
+</html>
