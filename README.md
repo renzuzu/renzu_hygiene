@@ -1,6 +1,6 @@
 # renzu_hygiene
 Fivem Hygiene System - ( Shower, Poop, Pee )
-![image](https://user-images.githubusercontent.com/82306584/128605007-308092dd-ac06-4bbc-85f6-f1fbb111b6e5.png)
+![image](https://user-images.githubusercontent.com/82306584/128605654-5964a581-378a-499c-9a2a-3980846b2bc5.png)
 
 # Sample Config
 ``` This is IPL Apartment you may need IPL loader or BOB_74 ipl to test the default config
