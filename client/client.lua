@@ -4,6 +4,7 @@ pee = 50
 poo = 50
 
 Citizen.CreateThread(function()
+    Wait(1000)
     while true do
         local sleep = 3000
         local ped = PlayerPedId()
@@ -32,6 +33,7 @@ end)
 local text = "Take Shower [E]"
 
 CreateThread(function()
+    Wait(1000)
     while true do
         local sleep = 2000
         local plyPed = PlayerPedId()
@@ -65,6 +67,7 @@ end)
 
 local text = "Wash Face [E]"
 CreateThread(function()
+    Wait(1000)
     while true do
         local sleep = 2000
         local plyPed = PlayerPedId()
