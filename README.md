@@ -34,3 +34,8 @@ config.hunger_to_poo = 50 -- hunger to poo convertion, poo will add if you gain 
 - https://github.com/renzuzu/renzu_hud
 - https://github.com/renzuzu/renzu_status
 - https://github.com/renzuzu/renzu_notify
+
+# optional
+- edit renzu_hud/conf/status.lua
+- set all hygiene/poo/pee status to hideifmax = true
+- the status will only show if its 50%
