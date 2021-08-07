@@ -7,7 +7,7 @@ Fivem Hygiene System - ( Shower, Poop, Pee )
 - Add Pee Status if Thirst status is added (status) ex. drinking water
 - Hygiene is Decreasing over a time you can config it @config.lua
 - Bad Hygiene Player ( zero hygiene status ) will be swarmed by  FLIES.
-- Player nearby to Bad Hygiene Player will have a stress status and reduced a little of health.
+- Player nearby to Bad Hygiene Player will gain a stress status and reduced a little of health.
 - 
 # Sample Config
 ``` This is IPL Apartment you may need IPL loader or BOB_74 ipl to test the default config
