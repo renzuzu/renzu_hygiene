@@ -8,7 +8,7 @@ Citizen.CreateThread(function()
     while true do
         local sleep = 3000
         local ped = PlayerPedId()
-        local myCoords = GetEntityCoords(GetPlayerPed(-1))
+        local myCoords = GetEntityCoords(ped)
         if IsEntityInWater(ped) then
             sleep = 500
             local table = {
@@ -37,8 +37,8 @@ CreateThread(function()
     while true do
         local sleep = 2000
         local plyPed = PlayerPedId()
+        local plyPos = GetEntityCoords(plyPed)
         for i = 1, #showers do
-            local plyPos = GetEntityCoords(plyPed)
             local showerpos = showers[i].pos
 
             local distance = GetDistance(plyPos, showerpos)
@@ -71,8 +71,8 @@ CreateThread(function()
     while true do
         local sleep = 2000
         local plyPed = PlayerPedId()
-        for i = 1, #washface do
         local plyPos = GetEntityCoords(plyPed)
+        for i = 1, #washface do
             local showerpos = washface[i].pos
 
             local distance = GetDistance(plyPos, showerpos)
@@ -107,8 +107,8 @@ CreateThread(function()
         local plyPed = PlayerPedId()
         local PlayerPed = PlayerPedId()
         text = "Take a Poo [E]"
+        local plyPos = GetEntityCoords(plyPed)
         for i = 1, #tae do
-            local plyPos = GetEntityCoords(plyPed)
             local showerpos = tae[i].pos
 
             local distance = GetDistance(plyPos, showerpos)
