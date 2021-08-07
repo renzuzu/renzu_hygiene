@@ -23,7 +23,7 @@ config.washfaceadd_status = 100000
 
 
 -- you need a bathroom map or IPL map to use
-showers = {
+showers = { -- shower station
     {pos = vector3(-803.74468994141,335.79489135742,220.9154486084), particle = "ent_amb_car_wash_jet", xRot = -180.0, nextWait = 0, h=257.05}, -- this one is IPL from bob_74 ipl
     -- others are custom maps
     -- Premier rouleau (droite)
@@ -86,7 +86,7 @@ showers = {
     {pos = vector3(-710.57928466797,5761.1840820313,17.869000244141), particle = "ent_amb_car_wash_jet", xRot = -180.0, nextWait = 0, h=152.75549316406},
 }
 
-washface = {
+washface = { -- wash face station
     {pos = vector3(-804.85552978516,332.40093994141,220.43850708008), particle = "ent_amb_car_wash_jet", xRot = -180.0, nextWait = 0, h=166.9}, -- this one is IPL from bob_74 ipl
     -- OTHERS ARE CUSTOM MAP
     -- Premier rouleau (droite)
