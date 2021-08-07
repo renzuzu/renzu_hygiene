@@ -2,6 +2,13 @@
 Fivem Hygiene System - ( Shower, Poop, Pee )
 ![image](https://user-images.githubusercontent.com/82306584/128605654-5964a581-378a-499c-9a2a-3980846b2bc5.png)
 
+# Feature :poop: 
+- Add Poop Status  if Hunger status is added (status) ex. eating burger
+- Add Pee Status if Thirst status is added (status) ex. drinking water
+- Hygiene is Decreasing over a time you can config it @config.lua
+- Bad Hygiene Player ( zero hygiene status ) will be swarmed by  FLIES.
+- Player nearby to Bad Hygiene Player will have a stress status and reduced a little of health.
+- 
 # Sample Config
 ``` This is IPL Apartment you may need IPL loader or BOB_74 ipl to test the default config
 {pos = vector3(-803.74468994141,335.79489135742,220.9154486084), particle = "ent_amb_car_wash_jet", xRot = -180.0, nextWait = 0, h=257.05}, -- this one is IPL from bob_74 ipl
