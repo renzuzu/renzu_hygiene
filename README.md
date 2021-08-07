@@ -31,9 +31,10 @@ config.thirst_to_pee = 50 -- thirst to pee convertion, pee will add if you gain 
 config.hunger_to_poo = 50 -- hunger to poo convertion, poo will add if you gain hunger (ex. from eating burger item)
 ```
 # Dependency
-- https://github.com/renzuzu/renzu_hud
-- https://github.com/renzuzu/renzu_status
+- https://github.com/renzuzu/renzu_hud (optional)
+- https://github.com/renzuzu/renzu_status (optional)
 - https://github.com/renzuzu/renzu_notify
+- https://github.com/renzuzu/renzu_popui
 
 # optional
 - edit renzu_hud/conf/status.lua
