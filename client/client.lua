@@ -56,7 +56,7 @@ Citizen.CreateThread(function()
                             ['custom_arg'] = {ped,false,false,shower}, -- example: {1,2,3,4}
                         }
                         TriggerEvent('renzu_popui:drawtextuiwithinput',table)
-                        while distance <= 1.4 do
+                        while distance <= 2.4 do
                             distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
                             Wait(500)
                         end
@@ -94,7 +94,7 @@ Citizen.CreateThread(function()
                             ['custom_arg'] = {ped,false,toilet}, -- example: {1,2,3,4}
                         }
                         TriggerEvent('renzu_popui:drawtextuiwithinput',table)
-                        while distance <= 1.4 do
+                        while distance <= 2.4 do
                             distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
                             Wait(500)
                         end
