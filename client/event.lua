@@ -340,6 +340,9 @@ AddEventHandler('renzu_hygiene:odoreffect', function(coords, id)
     end
 end)
 
+local forcepoo = 0
+local forcepee = 0
+poo,pee = 5000, 5000
 RegisterNetEvent('renzu_hygiene:addpee')
 AddEventHandler('renzu_hygiene:addpee', function(o)
     if pee < 1000000 then
@@ -348,28 +351,9 @@ AddEventHandler('renzu_hygiene:addpee', function(o)
         if pee > 1000000 then
             pee = 1000000
         end
-
-        while pee <= 10000 do
-            forcepee = forcepee + 1
-            TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'Your pee is about to burst..')
-            if forcepee > 20 then
-                if GetEntityModel(PlayerPedId()) == -1667301416 then
-                    sex = 'female'
-                else
-                    sex = 'male'
-                end
-                TriggerServerEvent('renzu_hygiene:peesync', sex)
-                pee = 0
-                odor = 0
-            end
-            Citizen.Wait(10000)
-        end
-        forcepee = 0
     end
 end)
 
-local forcepoo = 0
-local forcepee = 0
 RegisterNetEvent('renzu_hygiene:addpoo')
 AddEventHandler('renzu_hygiene:addpoo', function(o)
     if poo < 1000000 then
@@ -378,22 +362,6 @@ AddEventHandler('renzu_hygiene:addpoo', function(o)
         if poo > 1000000 then
         poo = 1000000
         end
-        while poo <= 10000 do
-            forcepoo = forcepoo + 1
-            TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'Your poopoo is about to burst..')
-            if forcepoo > 20 then
-                if GetEntityModel(PlayerPedId()) == -1667301416 then
-                    sex = 'female'
-                else
-                    sex = 'male'
-                end    
-                TriggerServerEvent('renzu_hygiene:poosync', sex)
-                poo = 0
-                odor = 0
-            end
-            Citizen.Wait(10000)
-        end
-        forcepoo = 0
     end
 end)
 
@@ -419,6 +387,7 @@ AddEventHandler('esx_status:add', function(name, val)
     end
 end)
 
+local poostart, peestart = false, false
 RegisterNetEvent("esx_status:onTick")
 AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
     odor = vitals[config.hygienestatus]
@@ -427,8 +396,52 @@ AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
     if odor <= 6 then
         TriggerServerEvent('renzu_hygiene:odoreffectsync')
     end
-    print(odor)
+    print(odor,poo,pee)
     TriggerEvent('esx_status:remove', config.hygienestatus, 100)
+    if not poostart and poo <= 10000 then
+        poostart = true
+        Citizen.CreateThread(function ()
+            while poo <= 10000 do
+                forcepoo = forcepoo + 1
+                TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'Your poopoo is about to burst..')
+                if forcepoo > 20 then
+                    if GetEntityModel(PlayerPedId()) == -1667301416 then
+                        sex = 'female'
+                    else
+                        sex = 'male'
+                    end    
+                    TriggerServerEvent('renzu_hygiene:poosync', sex)
+                    poo = 0
+                    odor = 0
+                end
+                Citizen.Wait(10000)
+            end
+            forcepoo = 0
+            poostart = false
+        end)
+    end
+    if not peestart and pee <= 10000 then
+        peestart = true
+        Citizen.CreateThread(function ()
+            while pee <= 10000 do
+                forcepee = forcepee + 1
+                TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'Your pee is about to burst..')
+                if forcepee > 20 then
+                    if GetEntityModel(PlayerPedId()) == -1667301416 then
+                        sex = 'female'
+                    else
+                        sex = 'male'
+                    end
+                    TriggerServerEvent('renzu_hygiene:peesync', sex)
+                    pee = 0
+                    odor = 0
+                end
+                Citizen.Wait(10000)
+            end
+            peestart = false
+            forcepee = 0
+        end)
+    end
 end)
 
 local sparticleEffects = {}
