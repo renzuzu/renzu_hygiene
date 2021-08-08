@@ -56,7 +56,7 @@ Citizen.CreateThread(function()
                             ['custom_arg'] = {ped,false,false,shower}, -- example: {1,2,3,4}
                         }
                         TriggerEvent('renzu_popui:drawtextuiwithinput',table)
-                        while distance <= 2.4 do
+                        while distance <= 3.4 do
                             distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
                             Wait(500)
                         end
@@ -94,7 +94,7 @@ Citizen.CreateThread(function()
                             ['custom_arg'] = {ped,false,toilet}, -- example: {1,2,3,4}
                         }
                         TriggerEvent('renzu_popui:drawtextuiwithinput',table)
-                        while distance <= 2.4 do
+                        while distance <= 3.4 do
                             distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
                             Wait(500)
                         end
@@ -119,7 +119,7 @@ CreateThread(function()
             local showerpos = showers[i].pos
 
             local distance = GetDistance(plyPos, showerpos)
-            if distance < 1.2 then
+            if distance < 1.4 then
                 showerpos = vector3(showerpos.x,showerpos.y,showerpos.z+0.2)
                 local table = {
                     ['key'] = 'E', -- key
@@ -131,7 +131,7 @@ CreateThread(function()
                     ['custom_arg'] = {plyPed,showerpos,showers[i]}, -- example: {1,2,3,4}
                 }
                 TriggerEvent('renzu_popui:drawtextuiwithinput',table)
-                while distance <= 1.2 do
+                while distance <= 3.2 do
                     distance = GetDistance(GetEntityCoords(plyPed), showerpos)
                     Wait(500)
                 end
@@ -166,7 +166,7 @@ CreateThread(function()
                     ['custom_arg'] = {washface[i].h}, -- example: {1,2,3,4}
                 }
                 TriggerEvent('renzu_popui:drawtextuiwithinput',table)
-                while distance <= 1.2 do
+                while distance <= 3.2 do
                     distance = GetDistance(GetEntityCoords(plyPed), showerpos)
                     Wait(500)
                 end
@@ -190,7 +190,7 @@ CreateThread(function()
 
             local distance = GetDistance(plyPos, showerpos)
 
-            if distance < 1.0 then
+            if distance < 1.1 then
                 sleep = 0
                 showerpos = vector3(showerpos.x,showerpos.y,showerpos.z+0.3)
                 if GetEntityModel(PlayerPed) == -1667301416 then
@@ -206,7 +206,7 @@ CreateThread(function()
                     ['custom_arg'] = {plyPed,tae[i]}, -- example: {1,2,3,4}
                 }
                 TriggerEvent('renzu_popui:drawtextuiwithinput',table)
-                while distance <= 1.2 do
+                while distance <= 3.2 do
                     distance = GetDistance(GetEntityCoords(plyPed), showerpos)
                     Wait(500)
                 end
