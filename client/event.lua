@@ -413,6 +413,8 @@ AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
                     TriggerServerEvent('renzu_hygiene:poosync', sex)
                     poo = 0
                     odor = 0
+                    TriggerEvent('esx_status:add', config.poostatus, 700000)
+                    break
                 end
                 Citizen.Wait(10000)
             end
@@ -435,6 +437,8 @@ AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
                     TriggerServerEvent('renzu_hygiene:peesync', sex)
                     pee = 0
                     odor = 0
+                    TriggerEvent('esx_status:add', config.peestatus, 700000)
+                    break
                 end
                 Citizen.Wait(10000)
             end
