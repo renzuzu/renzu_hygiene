@@ -3,10 +3,16 @@ local text = "Take a Poo [E]"
 
 local done = false
 RegisterNetEvent('renzu_hygiene:takepoop')
-AddEventHandler('renzu_hygiene:takepoop', function(plyPed, s)
+AddEventHandler('renzu_hygiene:takepoop', function(plyPed, s, entity)
+    local plyPed = PlayerPedId()
     if not ebak then
         ebak = true
-        SetEntityHeading(plyPed, s.h)
+        if entity ~= nil then
+            showerpos = GetEntityCoords(entity)
+            showerpos = vector3(showerpos.x,showerpos.y,showerpos.z+0.2)
+            s = {pos = showerpos, particle = "ent_amb_car_wash_jet", xRot = -180.0, nextWait = 0, h = GetEntityHeading(entity) + 180.0}
+        end
+        SetEntityHeading(PlayerPedId(), tonumber(s.h)*1.0)
         local PlayerPed = plyPed
         if GetEntityModel(plyPed) == -1667301416 then
             sex = 'female'
@@ -135,7 +141,6 @@ end)
 RegisterNetEvent('renzu_hygiene:flush')
 AddEventHandler('renzu_hygiene:flush', function(coord, id, sex)
     done = false
-    print("GAGO",coord)
     if #(GetEntityCoords(PlayerPedId()) - coord) < 5 then
         playsound(coord,4,'flush',0.7)
     end
@@ -197,7 +202,9 @@ end)
 
 local showeropen = false
 RegisterNetEvent('renzu_hygiene:takeshower')
-AddEventHandler('renzu_hygiene:takeshower', function(plyPed,showerpos,s)
+AddEventHandler('renzu_hygiene:takeshower', function(plyPed,showerpos,s,entity)
+    local plyPed = PlayerPedId()
+    local showerpos = showerpos
     if GetEntityModel(plyPed) == -1667301416 then
         LoadDict("mp_safehouseshower@female@")
         LoadDict("anim@mp_yacht@shower@female@")
@@ -209,11 +216,21 @@ AddEventHandler('renzu_hygiene:takeshower', function(plyPed,showerpos,s)
         LoadDict("switch@michael@wash_face")
         LoadDict("anim@mp_yacht@shower@male@")
     end
+    if entity ~= nil then -- prop based
+        showerpos = GetEntityCoords(entity)
+        showerpos = vector3(showerpos.x,showerpos.y,showerpos.z+0.2)
+        s = {pos = showerpos, particle = "ent_amb_car_wash_jet", xRot = -180.0, nextWait = 0, h = GetEntityHeading(entity)}
+    end
     showerpos = vector3(showerpos.x,showerpos.y,showerpos.z+0.5)
     if not showeropen then
         showeropen = true
         text = "Take Off Shower [E]"
-        SetEntityHeading(plyPed, s.h)
+        if entity ~= nil then
+            s.pos = vector3(showerpos.x,showerpos.y,showerpos.z-0.8)
+            TaskTurnPedToFaceEntity(plyPed,entity, 2000)
+        else
+            SetEntityHeading(plyPed, s.h)
+        end
         TriggerServerEvent("renzu_hygiene:syncshower", s)
         if GetEntityModel(plyPed) == -1667301416 then
             TaskPlayAnim(plyPed, "mp_safehouseshower@female@", "shower_enter_into_idle", 8.0, -8.0, 5.0, 0, 0.0, 0, 0, 0)
@@ -231,9 +248,6 @@ AddEventHandler('renzu_hygiene:takeshower', function(plyPed,showerpos,s)
             TaskPlayAnim(plyPed, "anim@mp_yacht@shower@male@", "male_shower_idle_c", 8.0, -8.0, 5.0, 0, 0.0, 0, 0, 0)
         end
         Citizen.Wait(5000)
-        if odor < 10 then
-            ExecuteCommand("removebasurar")
-        end
         odor = 1000000
         TriggerEvent('esx_status:add', config.hygienestatus, 1000000)
         showeropen = false
@@ -379,7 +393,6 @@ end)
 RegisterNetEvent('esx_status:add')
 AddEventHandler('esx_status:add', function(name, val)
 	if name == 'thirst' then
-        print(val / config.thirst_to_pee)
         TriggerEvent('renzu_hygiene:addpee', val / config.thirst_to_pee)
     end
     if name == 'hunger' then
@@ -396,7 +409,6 @@ AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
     if odor <= 6 then
         TriggerServerEvent('renzu_hygiene:odoreffectsync')
     end
-    print(odor,poo,pee)
     TriggerEvent('esx_status:remove', config.hygienestatus, 100)
     if not poostart and poo <= 10000 then
         poostart = true

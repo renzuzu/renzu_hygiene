@@ -21,6 +21,14 @@ config.hunger_to_poo = 50 -- hunger to poo convertion, poo will add if you gain 
 config.washface_effectstatus = 'energy' -- optional, this can be hygiene status too
 config.washfaceadd_status = 100000
 
+config.enablepropbase = true -- prop base toilet and showers , for housing purpose
+config.showerprop = { -- prop list add as many as you want
+    'ligoshower', -- custom prop
+}
+config.toiletprop = { -- prop list add as many as you want
+    'prop_toilet_01',
+}
+
 
 -- you need a bathroom map or IPL map to use
 showers = { -- shower station

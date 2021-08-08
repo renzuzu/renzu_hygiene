@@ -30,6 +30,83 @@ Citizen.CreateThread(function()
     end
 end)
 
+
+Citizen.CreateThread(function()
+    Wait(1000)
+    if config.enablepropbase then
+        while true do
+            local sleep = 3000
+            local ped = PlayerPedId()
+            local myCoords = GetEntityCoords(ped)
+            for k,v in pairs(config.showerprop) do
+                local shower = GetClosestObjectOfType(GetEntityCoords(PlayerPedId()), 2.0, GetHashKey(v))
+                if shower ~= 0 then
+                    sleep = 500
+                    local showerpos = GetEntityCoords(shower)
+                    showerpos = vector3(showerpos.x,showerpos.y,showerpos.z+0.2)
+                    distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
+                    if distance <= 2 then
+                        local table = {
+                            ['key'] = 'E', -- key
+                            ['event'] = 'renzu_hygiene:takeshower',
+                            ['title'] = 'Press [E] Take a Shower',
+                            ['server_event'] = false, -- server event or client
+                            ['unpack_arg'] = true, -- send args as unpack 1,2,3,4 order
+                            ['fa'] = '<i class="fas fa-shower"></i>',
+                            ['custom_arg'] = {ped,false,false,shower}, -- example: {1,2,3,4}
+                        }
+                        TriggerEvent('renzu_popui:drawtextuiwithinput',table)
+                        while distance <= 1.4 do
+                            distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
+                            Wait(500)
+                        end
+                        TriggerEvent('renzu_popui:closeui')
+                    end
+                end
+            end
+            Citizen.Wait(sleep)
+        end
+    end
+end)
+
+Citizen.CreateThread(function()
+    Wait(1000)
+    if config.enablepropbase then
+        while true do
+            local sleep = 3000
+            local ped = PlayerPedId()
+            local myCoords = GetEntityCoords(ped)
+            for k,v in pairs(config.toiletprop) do
+                local toilet = GetClosestObjectOfType(GetEntityCoords(PlayerPedId()), 2.0, GetHashKey(v))
+                if toilet ~= 0 then
+                    sleep = 500
+                    local showerpos = GetEntityCoords(toilet)
+                    showerpos = vector3(showerpos.x,showerpos.y,showerpos.z+0.2)
+                    distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
+                    if distance <= 2 then
+                        local table = {
+                            ['key'] = 'E', -- key
+                            ['event'] = 'renzu_hygiene:takepoop',
+                            ['title'] = 'Press [E] Take a Poop',
+                            ['server_event'] = false, -- server event or client
+                            ['unpack_arg'] = true, -- send args as unpack 1,2,3,4 order
+                            ['fa'] = '<i class="fad fa-poop"></i>',
+                            ['custom_arg'] = {ped,false,toilet}, -- example: {1,2,3,4}
+                        }
+                        TriggerEvent('renzu_popui:drawtextuiwithinput',table)
+                        while distance <= 1.4 do
+                            distance = #(GetEntityCoords(PlayerPedId()) - showerpos)
+                            Wait(500)
+                        end
+                        TriggerEvent('renzu_popui:closeui')
+                    end
+                end
+            end
+            Citizen.Wait(sleep)
+        end
+    end
+end)
+
 local text = "Take Shower [E]"
 
 CreateThread(function()
@@ -188,6 +265,7 @@ function LoadAnim(dict)
 end
 
 --TriggerServerEvent('renzu_hygiene:peesync', sex)
+
 RegisterCommand('pee', function()
     local PlayerPed = PlayerPedId()
     if GetEntityModel(PlayerPed) == -1667301416 then

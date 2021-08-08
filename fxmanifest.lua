@@ -6,6 +6,7 @@ ui_page 'html/ui.html'
 files {
     'html/audio/*.ogg',
     'html/ui.html',
+    "ligoshower.ytyp",
 }
 
 client_scripts {
@@ -18,3 +19,5 @@ server_scripts {
     'config.lua',
     'server/server.lua'
 }
+
+data_file 'DLC_ITYP_REQUEST' 'ligoshower.ytyp'
