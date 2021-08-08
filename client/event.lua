@@ -349,7 +349,7 @@ AddEventHandler('renzu_hygiene:addpee', function(o)
             pee = 1000000
         end
 
-        while pee >= 1000000 do
+        while pee <= 10000 do
             forcepee = forcepee + 1
             TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'Your pee is about to burst..')
             if forcepee > 20 then
@@ -378,7 +378,7 @@ AddEventHandler('renzu_hygiene:addpoo', function(o)
         if poo > 1000000 then
         poo = 1000000
         end
-        while poo >= 1000000 do
+        while poo <= 10000 do
             forcepoo = forcepoo + 1
             TriggerEvent('renzu_notify:Notify','warning','Oh no!', 'Your poopoo is about to burst..')
             if forcepoo > 20 then
@@ -422,6 +422,8 @@ end)
 RegisterNetEvent("esx_status:onTick")
 AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
     odor = vitals[config.hygienestatus]
+    pee = vitals[config.peestatus]
+    poo = vitals[config.poostatus]
     if odor <= 6 then
         TriggerServerEvent('renzu_hygiene:odoreffectsync')
     end
