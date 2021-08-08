@@ -326,7 +326,7 @@ AddEventHandler('renzu_hygiene:odoreffect', function(coords, id)
         if dist < 40 then
             TriggerEvent('renzu_hygiene:synclamok', id)
         end
-        if dist < 5.0 and odor < 5 then
+        if dist < 5.0 then
             if GetPlayerFromServerId(id) ~= PlayerId() then
                 LoadDict("switch@trevor@bear_floyds_face_smell")
                 TaskPlayAnim(PlayerPedId(), "switch@trevor@bear_floyds_face_smell", "bear_floyds_face_smell_loop_floyd", 8.0, -8.0, 3.0, 0, 0.0, 0, 0, 0)
