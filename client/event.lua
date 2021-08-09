@@ -409,7 +409,7 @@ AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
     if odor <= 6 then
         TriggerServerEvent('renzu_hygiene:odoreffectsync')
     end
-    TriggerEvent('esx_status:remove', config.hygienestatus, 100)
+    TriggerEvent('esx_status:remove', config.hygienestatus, config.hygieneremove)
     if not poostart and poo <= 10000 then
         poostart = true
         Citizen.CreateThread(function ()

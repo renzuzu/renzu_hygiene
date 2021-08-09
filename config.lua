@@ -12,6 +12,7 @@ config.items = { -- FRAMEWORK REQUIRED - you can rename the item
 config.poostatus = 'poop' -- registered status name
 config.peestatus = 'pee' -- registered status name
 config.hygienestatus  = 'hygiene' -- registered status name
+config.hygieneremove = 100 -- value to remove per tick (if using renzu_status check the multiplier)
 config.badhygienestatus_effect = 'stress' -- a status name to be affected if your hygiene is 0 (other player will experience this not the bad hygiened player)
 config.badhygiene_effect_value = 1000 -- value to remove/add in status if some bad hygiened player is nearby
 config.badhygiene_hp_effect = 3 -- minus this value to players sorrounding hp
