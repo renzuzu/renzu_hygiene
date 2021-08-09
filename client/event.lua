@@ -403,9 +403,23 @@ end)
 local poostart, peestart = false, false
 RegisterNetEvent("esx_status:onTick")
 AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
-    odor = vitals[config.hygienestatus]
-    pee = vitals[config.peestatus]
-    poo = vitals[config.poostatus]
+    if vitals[config.hygienestatus] == nil then -- support esx status
+       for k,v in pairs(vitals) do
+          if v.name == config.hygienestatus then
+             odor = v.val
+          end
+          if v.name == config.peestatus then
+             pee = v.val
+          end
+          if v.name == config.poostatus then
+             poo = v.val
+          end
+       end
+    else
+       odor = vitals[config.hygienestatus]
+       pee = vitals[config.peestatus]
+       poo = vitals[config.poostatus]
+    end
     if odor <= 6 then
         TriggerServerEvent('renzu_hygiene:odoreffectsync')
     end
