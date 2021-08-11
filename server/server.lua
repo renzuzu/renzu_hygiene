@@ -47,13 +47,11 @@ Citizen.CreateThread(function ()
                         ['@label'] = ""..v.name.."",
                         ['@weight'] = 1
                     })
-                    print("Inserting "..v.name.." new item")
                 else
                     SQLQuery(config.Mysql,'execute',"INSERT INTO items (name, label) VALUES (@name, @label)", {
                         ['@name'] = v.name,
                         ['@label'] = ""..v.name.."",
                     })
-                    print("Inserting "..v.item.." new item")
                 end
             end
             ESX.RegisterUsableItem(k, function(source)
