@@ -8,16 +8,17 @@ config.items = { -- FRAMEWORK REQUIRED - you can rename the item
     ['channelspray'] = {name = 'Chanel Spray', value = 500000},
     ['bvlgari'] = {name = 'BVLGARI EXTREME', value = 600000},
 }
+config.testcommand = true -- /toilet and /shower -- spawn the prop to test
 
 config.poostatus = 'poop' -- registered status name
 config.peestatus = 'pee' -- registered status name
 config.hygienestatus  = 'hygiene' -- registered status name
-config.hygieneremove = 100 -- value to remove per tick (if using renzu_status check the multiplier)
+config.hygieneremove = 10 -- value to remove per tick (if using renzu_status check the multiplier)
 config.badhygienestatus_effect = 'stress' -- a status name to be affected if your hygiene is 0 (other player will experience this not the bad hygiened player)
-config.badhygiene_effect_value = 1000 -- value to remove/add in status if some bad hygiened player is nearby
+config.badhygiene_effect_value = 100 -- value to remove/add in status if some bad hygiened player is nearby
 config.badhygiene_hp_effect = 3 -- minus this value to players sorrounding hp
-config.thirst_to_pee = 50 -- thirst to pee convertion, pee will add if you gain thirst (ex. from drinking water item)
-config.hunger_to_poo = 50 -- hunger to poo convertion, poo will add if you gain hunger (ex. from eating burger item)
+config.thirst_to_pee = 0.01 -- thirst to pee convertion, pee will add if you gain thirst (ex. from drinking water item) 0.1 = 10% from add value of thirst
+config.hunger_to_poo = 0.01 -- hunger to poo convertion, poo will add if you gain hunger (ex. from eating burger item) 0.1 = 10% from add value of hunger
 
 config.washface_effectstatus = 'energy' -- optional, this can be hygiene status too
 config.washfaceadd_status = 100000

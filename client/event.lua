@@ -359,7 +359,7 @@ local forcepee = 0
 poo,pee = 5000, 5000
 RegisterNetEvent('renzu_hygiene:addpee')
 AddEventHandler('renzu_hygiene:addpee', function(o)
-    if pee < 1000000 then
+    if pee <= 1000000 then
         TriggerEvent('esx_status:remove', config.peestatus, o)
         pee = pee + o
         if pee > 1000000 then
@@ -370,7 +370,7 @@ end)
 
 RegisterNetEvent('renzu_hygiene:addpoo')
 AddEventHandler('renzu_hygiene:addpoo', function(o)
-    if poo < 1000000 then
+    if poo <= 1000000 then
         TriggerEvent('esx_status:remove', config.poostatus, o)
         poo = poo + o
         if poo > 1000000 then
@@ -393,10 +393,10 @@ end)
 RegisterNetEvent('esx_status:add')
 AddEventHandler('esx_status:add', function(name, val)
 	if name == 'thirst' then
-        TriggerEvent('renzu_hygiene:addpee', val / config.thirst_to_pee)
+        TriggerEvent('renzu_hygiene:addpee', val * config.thirst_to_pee)
     end
     if name == 'hunger' then
-        TriggerEvent('renzu_hygiene:addpoo', val / config.hunger_to_poo)
+        TriggerEvent('renzu_hygiene:addpoo', val * config.hunger_to_poo)
     end
 end)
 
@@ -404,21 +404,21 @@ local poostart, peestart = false, false
 RegisterNetEvent("esx_status:onTick")
 AddEventHandler("esx_status:onTick", function(vitals) -- use renzu_status
     if vitals[config.hygienestatus] == nil then -- support esx status
-       for k,v in pairs(vitals) do
-          if v.name == config.hygienestatus then
-             odor = v.val
-          end
-          if v.name == config.peestatus then
-             pee = v.val
-          end
-          if v.name == config.poostatus then
-             poo = v.val
-          end
-       end
+        for k,v in pairs(vitals) do
+           if v.name == config.hygienestatus then
+              odor = v.val
+           end
+           if v.name == config.peestatus then
+              pee = v.val
+           end
+           if v.name == config.poostatus then
+              poo = v.val
+           end
+        end
     else
-       odor = vitals[config.hygienestatus]
-       pee = vitals[config.peestatus]
-       poo = vitals[config.poostatus]
+        odor = vitals[config.hygienestatus]
+        pee = vitals[config.peestatus]
+        poo = vitals[config.poostatus]
     end
     if odor <= 6 then
         TriggerServerEvent('renzu_hygiene:odoreffectsync')

@@ -3,6 +3,14 @@ odor = 10
 pee = 50
 poo = 50
 
+LoadModel = function(model)
+	while not HasModelLoaded(model) do
+		RequestModel(model)
+		print("loading")
+		Citizen.Wait(1)
+	end
+end
+
 Citizen.CreateThread(function()
     Wait(1000)
     while true do
@@ -30,6 +38,24 @@ Citizen.CreateThread(function()
     end
 end)
 
+Citizen.CreateThread(function()
+    Wait(100)
+    if config.testcommand then
+        RegisterCommand('toilet', function()
+            local wheelchair = CreateObject(GetHashKey('prop_toilet_01'), GetEntityCoords(PlayerPedId()), true)
+            PlaceObjectOnGroundProperly(wheelchair)
+            FreezeEntityPosition(wheelchair, true)
+        end, false)
+
+        RegisterCommand('shower', function()
+            --LoadModel('boxing')
+            LoadModel('ligoshower')
+            local wheelchair = CreateObject(GetHashKey('ligoshower'), GetEntityCoords(PlayerPedId()), true)
+            PlaceObjectOnGroundProperly(wheelchair)
+            FreezeEntityPosition(wheelchair, true)
+        end, false)
+    end
+end)
 
 Citizen.CreateThread(function()
     Wait(1000)
