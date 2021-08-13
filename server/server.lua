@@ -41,7 +41,7 @@ Citizen.CreateThread(function ()
             })
             if results[1] == nil then
                 local weight = 'limit'
-                if config.weight_type then
+                if config.weight_type == 'weight' then
                     SQLQuery(config.Mysql,'execute',"INSERT INTO items (name, label, weight) VALUES (@name, @label, @weight)", {
                         ['@name'] = v.name,
                         ['@label'] = ""..v.name.."",
